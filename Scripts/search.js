@@ -47,7 +47,7 @@ function fillDeathsCases (numbersConfirmedDeaths, numbersConfirmedCases) {
 
 function fillUpdatedDate (dateUpdated) {
     const date = new Date(dateUpdated);
-    document.getElementById('update-date').innerHTML = `Updated: ${date.getMonth() + 1}/${date.getUTCDate()}/${date.getFullYear()}`;
+    document.getElementById('update-date').innerHTML = `Updated: ${(date.getMonth() + 1).toString().padStart(2, "0")}/${date.getUTCDate().toString().padStart(2, "0")}/${date.getFullYear()}`;
 }
 
 function noInfosForThisCountry () {
