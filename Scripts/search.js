@@ -23,7 +23,6 @@ async function validateCountryInfos (jsonResponse) {
 }
 
 function fillInfos (countryInfos) {
-    // removeVisibilitySearchScreen();
     addCountryInfoSearchScreen();
     addVisibilityResultScreen();  
     fillCountry(countryInfos.Country);
@@ -69,16 +68,22 @@ function addVisibilityResultScreen () {
 }
 
 function addCountryInfoSearchScreen () {
-    document.getElementById('search-screen').classList.add('country-info-visible')
+    document.getElementById('search-screen').classList.add('country-info-visible');
 }
 
 function removeCountryInfoSearchScreen () {
-    document.getElementById('search-screen').classList.remove('country-info-visible')
+    document.getElementById('search-screen').classList.remove('country-info-visible');
 }
 
 function backSearchScreen () {
+
+    if (document.getElementById('search-screen').classList.contains('country-info-visible')) {
+        document.getElementById('search-screen').classList.add('home');
+    }
+
     removeVisibilityResultScreen();
     removeCountryInfoSearchScreen();
+   
 }
 
 function formatNumber(number) {
