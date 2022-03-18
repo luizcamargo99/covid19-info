@@ -73,7 +73,7 @@ button:hover {
     color: var(--primary);
 }
 
-#country-name {
+.title {
     margin-bottom: 2rem;
     color: var(--primary);
 }
@@ -95,8 +95,10 @@ button:hover {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    text-align: center;
     flex-wrap: wrap;
     gap: 1rem;
+    margin-bottom: 2rem;
 }
 
 .column {

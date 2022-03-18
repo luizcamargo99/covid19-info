@@ -14,7 +14,7 @@ async function getCountries() {
 async function validateReturnCountriesRequest (response) {
     if (response.status === 200) {
         const jsonResponse = await response.json();
-        await addCountriesToSelect(jsonResponse);
+        await addCountriesToSelect(await sortArray(jsonResponse));
     }
     else {
         console.log('Error');
@@ -40,7 +40,8 @@ async function searchForCountry () {
 async function validateReturnCountrySearch (response) {
     if (response.status === 200) {
         const jsonResponse = await response.json();
-        validateCountryInfos(jsonResponse);
+        await validateCountryInfos(jsonResponse);
+        // await callWorldInfo();
     }
     else {
         console.log('Error');
@@ -84,6 +85,13 @@ async function backSearchScreen () {
     removeVisibilityResultScreen();
     addVisibilitySearchScreen();
 }
+
+async function sortArray (objArray) {
+    return objArray.sort(function(a, b) {
+        return a.Country.localeCompare(b.Country)      
+      });      
+}
+
 
 function numberWithCommas(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
