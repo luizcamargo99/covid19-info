@@ -53,11 +53,30 @@ async function validateCountryInfos (jsonResponse) {
 
 function fillInfos (countryInfos) {
     removeVisibilitySearchScreen();
-    document.getElementById('result-screen').style.display = 'flex';
-    document.getElementById('country-name').innerHTML = countryInfos.Country.toUpperCase();
-    document.getElementById('confirmed-cases').innerHTML = formatNumber(countryInfos.Confirmed);
-    document.getElementById('confirmed-deaths').innerHTML = formatNumber(countryInfos.Deaths) + ' lives';
-    const date = new Date(countryInfos.Date);
+    addVisibilityResultScreen();  
+    fillCountry(countryInfos.Country);
+    fillConfirmedCases(countryInfos.Confirmed);
+    fillDeathsCases(countryInfos.Deaths, countryInfos.Confirmed);   
+    fillUpdatedDate(countryInfos.Date);
+}
+
+function fillCountry (countryName) {
+    document.getElementById('country-name').innerHTML = countryName.toUpperCase();
+}
+
+function fillConfirmedCases (numbersConfirmedCases) {
+    document.getElementById('confirmed-cases').innerHTML = formatNumber(numbersConfirmedCases);
+}
+
+function fillDeathsCases (numbersConfirmedDeaths, numbersConfirmedCases) {
+    document.getElementById('confirmed-deaths').innerHTML = `${formatNumber(numbersConfirmedDeaths)} lives`;
+
+    const lethality = (numbersConfirmedDeaths/numbersConfirmedCases * 100).toFixed(2);
+    document.getElementById('lethality').innerHTML = `Lethality: ${lethality}%`;
+}
+
+function fillUpdatedDate (dateUpdated) {
+    const date = new Date(dateUpdated);
     document.getElementById('update-date').innerHTML = `Updated: ${date.getMonth() + 1}/${date.getUTCDate()}/${date.getFullYear()}`;
 }
 
@@ -71,6 +90,10 @@ function removeContentNoInfo () {
 
 function removeVisibilityResultScreen () {
     document.getElementById('result-screen').style.display = 'none';
+}
+
+function addVisibilityResultScreen () {
+    document.getElementById('result-screen').style.display = 'flex';
 }
 
 function removeVisibilitySearchScreen () {
