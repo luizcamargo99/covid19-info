@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./Scripts/main.js"></script>
+    <link rel="stylesheet" href="./Styles/global.css">
+    <title>Covid 19 Info</title>
+</head>
+<body onload="init()">
+    <header>
+        <img src="./Images/covid_img.png.crdownload" alt="Covid 19" onclick="backSearchScreen()">
+    </header>
+    <main class="row">
+        <div class="column" id="search-screen">
+            <span> Select the country to search for information about <b>COVID 19.</b> </span>
+            <div class="row">
+                <select name="countries" id="countries" onchange="removeContentNoInfo()">                
+                </select>
+                <button onclick="searchForCountry()">Search</button>                
+            </div>    
+            <span id="no-info"></span>        
+        </div>
+        <div class="column" id="result-screen">            
+            <h2 id="country-name"></h2>
+
+            <div class="row">           
+                <div class="column card">
+                    <span class="red confirmed">CONFIRMED CASES</span>
+                    <span id="confirmed-cases"></span>
+                </div>
+                <div class="column card" id="deaths">
+                    <span class="red confirmed">CONFIRMED DEATHS</span>
+                    <span id="confirmed-deaths"></span>
+                </div>
+            </div>
+            <span>My deepest condolences to everyone who lost loved ones to <b>COVID 19</b>.</span>
+         
+        </div>
+    </main>
+</body>
+</html>
