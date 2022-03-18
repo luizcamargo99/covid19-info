@@ -1,19 +1,19 @@
 const endPointCountries = 'https://api.covid19api.com/countries';
 const endPointSearchForCountry = 'https://api.covid19api.com/total/country/[country-id]';
 
-async function init () {
-   await getCountries();
+function init () {
+   getCountries();
 }
 
 async function getCountries() {
     const response = await fetch(endPointCountries);
-    await validateReturnCountriesRequest(response); 
+    validateReturnCountriesRequest(response); 
 }
 
 async function validateReturnCountriesRequest (response) {
     if (response.status === 200) {
         const jsonResponse = await response.json();
-        await addCountriesToSelect(await sortArray(jsonResponse));
+        addCountriesToSelect(await sortArray(jsonResponse));
     }
     else {
         console.log('Error');
@@ -48,46 +48,45 @@ async function validateReturnCountrySearch (response) {
 
 async function validateCountryInfos (jsonResponse) {
     const currentDayInfos = jsonResponse.pop();
-    currentDayInfos != null ? await fillInfos(currentDayInfos) : await noInfosForThisCountry();
+    currentDayInfos != null ? fillInfos(currentDayInfos) : noInfosForThisCountry();
 }
 
-async function fillInfos (countryInfos) {
-    await removeVisibilitySearchScreen();
+function fillInfos (countryInfos) {
+    removeVisibilitySearchScreen();
     document.getElementById('result-screen').style.display = 'flex';
     document.getElementById('country-name').innerHTML = countryInfos.Country.toUpperCase();
     document.getElementById('confirmed-cases').innerHTML = formatNumber(countryInfos.Confirmed);
     document.getElementById('confirmed-deaths').innerHTML = formatNumber(countryInfos.Deaths) + ' lives';
-
     const date = new Date(countryInfos.Date);
     document.getElementById('update-date').innerHTML = `Updated: ${date.getMonth() + 1}/${date.getUTCDate()}/${date.getFullYear()}`;
 }
 
-async function noInfosForThisCountry () {
+function noInfosForThisCountry () {
     document.getElementById('no-info').innerHTML = 'This country does not have information in our system.';
 }
 
-async function removeContentNoInfo () {
+function removeContentNoInfo () {
     document.getElementById('no-info').innerHTML = ''; 
 }
 
-async function removeVisibilityResultScreen () {
+function removeVisibilityResultScreen () {
     document.getElementById('result-screen').style.display = 'none';
 }
 
-async function removeVisibilitySearchScreen () {
+function removeVisibilitySearchScreen () {
     document.getElementById('search-screen').style.display = 'none';
 }
 
-async function addVisibilitySearchScreen () {
+function addVisibilitySearchScreen () {
     document.getElementById('search-screen').style.display = 'flex';
 }
 
-async function backSearchScreen () {
+function backSearchScreen () {
     removeVisibilityResultScreen();
     addVisibilitySearchScreen();
 }
 
-async function sortArray (objArray) {
+function sortArray (objArray) {
     return objArray.sort(function(a, b) {
         return a.Country.localeCompare(b.Country)      
       });      
