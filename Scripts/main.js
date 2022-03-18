@@ -1,6 +1,5 @@
 const endPointCountries = 'https://api.covid19api.com/countries';
 const endPointSearchForCountry = 'https://api.covid19api.com/total/country/[country-id]';
-const endPointWorld = 'https://api.covid19api.com/world/total';
 
 async function init () {
    await getCountries();
@@ -41,7 +40,6 @@ async function validateReturnCountrySearch (response) {
     if (response.status === 200) {
         const jsonResponse = await response.json();
         await validateCountryInfos(jsonResponse);
-        // await callWorldInfo();
     }
     else {
         console.log('Error');
@@ -57,8 +55,11 @@ async function fillInfos (countryInfos) {
     await removeVisibilitySearchScreen();
     document.getElementById('result-screen').style.display = 'flex';
     document.getElementById('country-name').innerHTML = countryInfos.Country.toUpperCase();
-    document.getElementById('confirmed-cases').innerHTML = numberWithCommas(countryInfos.Confirmed);
-    document.getElementById('confirmed-deaths').innerHTML = numberWithCommas(countryInfos.Deaths) + ' lives';
+    document.getElementById('confirmed-cases').innerHTML = formatNumber(countryInfos.Confirmed);
+    document.getElementById('confirmed-deaths').innerHTML = formatNumber(countryInfos.Deaths) + ' lives';
+
+    const date = new Date(countryInfos.Date);
+    document.getElementById('update-date').innerHTML = `Updated: ${date.getMonth() + 1}/${date.getUTCDate()}/${date.getFullYear()}`;
 }
 
 async function noInfosForThisCountry () {
@@ -92,8 +93,7 @@ async function sortArray (objArray) {
       });      
 }
 
-
-function numberWithCommas(number) {
+function formatNumber(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
