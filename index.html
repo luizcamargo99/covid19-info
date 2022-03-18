@@ -14,31 +14,33 @@
     <header>
         <img src="./Images/covid_img.png.crdownload" alt="Covid 19" onclick="backSearchScreen()">
     </header>
-    <main class="row">
-        <div class="column" id="search-screen">
-            <span> Select the country to search for information about <b>COVID 19.</b> </span>
-            <div class="row">
-                <select name="countries" id="countries" onchange="removeContentNoInfo()">                
-                </select>
-                <button onclick="searchForCountry()">Search</button>                
-            </div>    
-            <span id="no-info"></span>        
-        </div>
-        <div class="column" id="result-screen">            
-            <h1 id="country-name" class="title"></h1>
-            <div class="row">           
-                <div class="column card">
-                    <span class="red confirmed">CONFIRMED CASES</span>
-                    <span id="confirmed-cases"></span>
-                </div>
-                <div class="column card" id="deaths">
-                    <span class="red confirmed">CONFIRMED DEATHS</span>
-                    <span id="confirmed-deaths"></span>
-                    <span id="lethality"></span>
-                </div>
+    <main class="row"> 
+        <div>
+            <div class="column" id="search-screen">
+                <span> Select the country to search for information about <b>COVID 19.</b> </span>
+                <div class="row">
+                    <select name="countries" id="countries" onchange="removeContentNoInfo()">                
+                    </select>
+                    <button onclick="searchForCountry()">Search</button>                
+                </div>    
+                <span id="no-info"></span>        
             </div>
-            <span id="update-date"></span>
-            <span>My deepest condolences to everyone who lost loved ones to <b>COVID 19</b>.</span>         
+            <div class="column" id="result-screen">            
+                <h1 id="country-name" class="title"></h1>
+                <div class="row">           
+                    <div class="column card">
+                        <span class="red confirmed">CONFIRMED CASES</span>
+                        <span id="confirmed-cases"></span>
+                    </div>
+                    <div class="column card" id="deaths">
+                        <span class="red confirmed">CONFIRMED DEATHS</span>
+                        <span id="confirmed-deaths"></span>
+                        <span id="lethality"></span>
+                    </div>
+                </div>
+                <span id="update-date"></span>
+                <span>My deepest condolences to everyone who lost loved ones to <b>COVID 19</b>.</span>         
+            </div>        
         </div>
     </main>
 </body>

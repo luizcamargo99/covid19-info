@@ -29,7 +29,7 @@ header img {
 }
 
 select {
-    width: 20rem;
+    width: 25rem;
     padding: 0.3rem;
     border: 0.15rem solid var(--primary);
     border-radius: 0.5rem;
@@ -42,10 +42,11 @@ select:focus {
 
 main {
     margin: 1rem;
+    /* animation: zoom 1s both; */
 }
 
 button {
-    width: 5rem;
+    width: 10rem;
     height: 2rem;
     cursor: pointer;
     color: #fff;
@@ -60,12 +61,14 @@ button:hover {
 
 
 #search-screen {
-    margin-top: 15rem;
+    margin-top: 15rem;    
+    font-size: 1.5rem;
 }
 
 #result-screen {
     display: none;
     margin-top: 2rem;
+    animation: zoom 1s both;
 }
 
 #no-info {
@@ -116,6 +119,45 @@ button:hover {
     font-weight: 600;
     font-size: 1.5rem;
 }
+
+.country-info-visible {
+    margin-top: 5rem !important;
+    font-size: 1rem !important;
+    animation: move-up 1s both;
+}
+
+@keyframes zoom {
+    
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+    
+}
+
+@keyframes move-up {
+    
+    0% {
+        transform: scale(1.4) translateY(140%);
+    }
+
+    100% {
+        transform: scale(1) translateY(0%);
+    }
+    
+}
+
+.country-info-visible select {
+    width: 20rem;
+}
+
+.country-info-visible button {
+    width: 5rem;
+}
+
 
 #confirmed-cases, #confirmed-deaths {
     font-weight: 500;

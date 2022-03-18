@@ -1,6 +1,7 @@
 const endPointSearchForCountry = 'https://api.covid19api.com/total/country/[country-id]';
 
 async function searchForCountry () {
+    removeVisibilityResultScreen();
     const countrySelected = document.getElementById('countries').value;
     const response = await fetch(endPointSearchForCountry.replace('[country-id]', countrySelected));
     await validateReturnCountrySearch(response);
@@ -22,7 +23,8 @@ async function validateCountryInfos (jsonResponse) {
 }
 
 function fillInfos (countryInfos) {
-    removeVisibilitySearchScreen();
+    // removeVisibilitySearchScreen();
+    addCountryInfoSearchScreen();
     addVisibilityResultScreen();  
     fillCountry(countryInfos.Country);
     fillConfirmedCases(countryInfos.Confirmed);
@@ -66,17 +68,17 @@ function addVisibilityResultScreen () {
     document.getElementById('result-screen').style.display = 'flex';
 }
 
-function removeVisibilitySearchScreen () {
-    document.getElementById('search-screen').style.display = 'none';
+function addCountryInfoSearchScreen () {
+    document.getElementById('search-screen').classList.add('country-info-visible')
 }
 
-function addVisibilitySearchScreen () {
-    document.getElementById('search-screen').style.display = 'flex';
+function removeCountryInfoSearchScreen () {
+    document.getElementById('search-screen').classList.remove('country-info-visible')
 }
 
 function backSearchScreen () {
     removeVisibilityResultScreen();
-    addVisibilitySearchScreen();
+    removeCountryInfoSearchScreen();
 }
 
 function formatNumber(number) {
