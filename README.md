@@ -30,5 +30,7 @@ This project is an information about almost all countries with records of the Co
 
 Link to access the project: <a href="https://luizcamargo99.github.io/covid19-info/" taret="blank"> Covid 19 Info </a>
 
+My deepest condolences to everyone who lost loved ones to COVID 19.
+
 Thanks for your attention, see you later!👍
 
